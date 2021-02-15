@@ -1,25 +1,49 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// function App() {
+//   return (
+//     <div className="App">Hello, World!</div>
+//   );
+// }
+
+class App extends Component {
+  componentDidMount() {
+    const menuItems = [{
+      name: 'Chin hum',
+      desc: 'It is a slowly stewed meat curry from northern Thailand. This particular version is made with beef.',
+    }, {
+      name: 'Kaeng om',
+      desc: 'A spicy Lanna "curry" with meat, and without any coconut milk.',
+    }, {
+      name: 'Tom saep',
+      desc: 'A spicy soup made with stewed meat (usually pork, chicken or beef), roasted fresh herbs and spices, ground roasted rice, and generous amounts of lime juice and fresh herbs just before serving.',
+    }, {
+      name: 'Yam thale',
+      desc: 'A spicy salad with mixed seafood (cuttlefish, shelled prawns, mussels), shallots, lime juice, fish sauce and Thai celery.',
+    }, {
+      name: 'Mu phat sato',
+      desc: 'Sliced pork stir-fried with sato (the beans of the Parkia speciosa, also known as "stink bean" or "bitter bean"), onion, garlic, fish sauce, chili peppers, and oyster sauce.',
+    }];
+
+    this.setState({ menuItems: menuItems });
+    this.setState({ menuItems });
+  }
+  render() {
+    console.log('this', this);
+    const menuItems = this.state?.menuItems.map((menuItem, index) => (
+      <li key={index} className="menuItem-item">
+        <p className="menuItem-item-title">{menuItem.name}</p>
+        <p className="menuItem-item-text">{menuItem.desc}</p>
+        <input type="checkbox" checked={menuItem.isComplete} data-index={index} onChange={this.toggleCompletion} />
+      </li>
+    ))
+    return (
+      <React.Fragment>
+        <div>{menuItems}</div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
