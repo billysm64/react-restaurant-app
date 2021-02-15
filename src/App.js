@@ -32,14 +32,16 @@ class App extends Component {
   render() {
     console.log('this', this);
     const menuItems = this.state?.menuItems.map((menuItem, index) => (
-      <li key={index} className="menuItem-item">
+      <div key={index} className="menuItem-item">
         <p className="menuItem-item-title">{menuItem.name}</p>
         <p className="menuItem-item-text">{menuItem.desc}</p>
-        <input type="checkbox" checked={menuItem.isComplete} data-index={index} onChange={this.toggleCompletion} />
-      </li>
+        <button type="submit">ADD ITEM</button>
+        <button type="submit">REMOVE ITEM FROM LIST</button>
+      </div>
     ))
     return (
       <React.Fragment>
+        <h1>Majestic Thai</h1>
         <div>{menuItems}</div>
       </React.Fragment>
     );
